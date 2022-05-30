@@ -1,3 +1,4 @@
+const path = require("path");
 const fs = require("fs");
 
 module.exports = (routes) => {
@@ -20,9 +21,12 @@ module.exports = (routes) => {
       return true;
     });
   }
-  routes.post("/api/notes", function (res) {
-    const Note = res.body;
+  routes.post("/api/notes", function (req) {
+    const Note = req.body;
     noteTaker.push(Note);
     Write();
+  });
+  routes.get("/api/notes/:id", function (req, res) {
+    res.json(notes[req.params.id]);
   });
 };
