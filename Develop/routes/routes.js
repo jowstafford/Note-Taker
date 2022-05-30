@@ -27,6 +27,6 @@ module.exports = (routes) => {
     Write();
   });
   routes.get("/api/notes/:id", function (req, res) {
-    res.json(notes[req.params.id]);
+    res.json(noteTaker[req.params.id]);
   });
 };
