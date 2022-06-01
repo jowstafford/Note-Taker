@@ -16,15 +16,17 @@ module.exports = (routes) => {
     });
   });
 
-  function Write() {
-    fs.writeFile("/db/db.json", JSON.stringify(notes, "\t"), () => {
-      return true;
-    });
-  }
-  routes.post("/api/notes", function (req) {
+  // function Write(notes) {
+  //   // fs.writeFileSync("/db/db.json", JSON.stringify(notes, "\t"), () => {
+      // fs.writeFileSync(path.join(__dirname, './db/db.json'), JSON.stringify(notes), null, 2);
+  //     return true;
+  //   ;
+  // }
+  routes.post("/api/notes", function (req, res) {
     const Note = req.body;
     noteTaker.push(Note);
-    Write();
+    fs.writeFileSync(path.join(__dirname, './db/db.json'), JSON.stringify(noteTaker), null, 2);
+    res.json(Note);
   });
   routes.get("/api/notes/:id", function (req, res) {
     res.json(noteTaker[req.params.id]);
