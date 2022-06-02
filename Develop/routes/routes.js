@@ -2,7 +2,7 @@ const path = require("path");
 const fs = require("fs");
 const routes = require("express").Router;
 
-module.exports = (route) => {
+module.exports = () => {
   routes.get("/notes", function (res) {
     res.sendFile(path.join(__dirname, "../public/notes.html"));
   });
